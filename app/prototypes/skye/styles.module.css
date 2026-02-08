@@ -1,0 +1,495 @@
+/* Container with weather-based gradient background */
+.container {
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    overflow-x: hidden;
+    transition: background 0.5s ease;
+}
+
+/* Back button */
+.backButton {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.backButton:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+}
+
+/* Main content */
+.main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 6rem 2rem 4rem;
+    transition: opacity 0.3s ease;
+}
+
+/* Fade transitions */
+.fadeIn {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.fadeOut {
+    opacity: 0.3;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.3;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Header section */
+.header {
+    margin-bottom: 2rem;
+}
+
+/* Search container */
+.searchContainer {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    font-size: 1rem;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* City list dropdown */
+.cityList {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    overflow: hidden;
+    z-index: 50;
+}
+
+.cityButton {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    text-align: left;
+    color: #0A77E4;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.cityButton:hover {
+    background: rgba(147, 197, 253, 0.2);
+}
+
+/* City selector pills */
+.cityPills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.cityPill {
+    padding: 0.4rem 1.25rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cityPill:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.cityPillActive {
+    background: white;
+    border-color: white;
+    color: #0A77E4;
+}
+
+/* Divider between sections */
+.divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.16);
+    margin: 0 2rem;
+}
+
+/* Current weather section */
+.currentWeather {
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+}
+
+.locationName {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.currentTemp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.tempValue {
+    font-size: 6rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+}
+
+.weatherIcon {
+    font-size: 5rem;
+    line-height: 1;
+    display: block;
+    margin: 1rem 0;
+}
+
+.condition {
+    font-size: 1.5rem;
+    color: white;
+    margin: 1rem 0;
+    font-weight: 500;
+}
+
+.tempToggle {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.toggleButton {
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggleButton:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.toggleButtonActive {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: white;
+}
+
+.highLow {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: white;
+    margin: 1rem 0 0;
+}
+
+/* Section titles */
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    margin: 0 0 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Hourly forecast section */
+.hourlySection {
+    padding: 2rem 2rem 2rem 2rem;
+}
+
+.hourlyScroll {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(147, 197, 253, 0.3) transparent;
+}
+
+.hourlyScroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.hourlyScroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.hourlyScroll::-webkit-scrollbar-thumb {
+    background: rgba(147, 197, 253, 0.3);
+    border-radius: 3px;
+}
+
+.hourCard {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    min-width: 70px;
+    transition: opacity 0.2s ease;
+}
+
+.hourCard:hover {
+    opacity: 0.7;
+}
+
+.hourTime {
+    font-size: 0.9rem;
+    color: white;
+    font-weight: 500;
+    margin: 0;
+}
+
+.hourIcon {
+    font-size: 2rem;
+}
+
+.hourTemp {
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 600;
+    margin: 0;
+}
+
+.hourPrecip {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* Daily forecast section */
+.dailySection {
+    padding: 2rem;
+}
+
+.dailyList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dayRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: opacity 0.2s ease;
+}
+
+.dayRow:last-child {
+    border-bottom: none;
+}
+
+.dayRow:hover {
+    opacity: 0.7;
+}
+
+.dayLeft {
+    flex: 0 0 80px;
+}
+
+.dayName {
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    margin: 0;
+}
+
+.dayCenter {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.dayIcon {
+    font-size: 2rem;
+}
+
+.dayRight {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.tempBar {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, rgba(147, 197, 253, 0.5), rgba(255, 165, 0, 0.5));
+    border-radius: 2px;
+}
+
+.dayLow {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    min-width: 35px;
+    text-align: right;
+}
+
+.dayHigh {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    min-width: 35px;
+    text-align: right;
+}
+
+/* Details section */
+.detailsSection {
+    padding: 2rem;
+}
+
+.detailsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem 1.5rem;
+}
+
+.detailItem {
+    transition: opacity 0.2s ease;
+}
+
+.detailItem:hover {
+    opacity: 0.7;
+}
+
+.detailLabel {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 0.5rem;
+    font-weight: 500;
+}
+
+.detailValue {
+    font-size: 1.25rem;
+    color: white;
+    font-weight: 600;
+    margin: 0;
+}
+
+.pressureTrend {
+    font-size: 1rem;
+    margin-left: 0.25rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .main {
+        padding: 5rem 1rem 2rem;
+    }
+
+    .currentWeather {
+        padding: 2rem 1rem;
+    }
+
+    .tempValue {
+        font-size: 4rem;
+    }
+
+    .weatherIcon {
+        font-size: 3.5rem;
+    }
+
+    .locationName {
+        font-size: 1.5rem;
+    }
+
+    .cityPills {
+        justify-content: center;
+    }
+
+    .hourlySection {
+        padding: 1.5rem 1rem;
+    }
+
+    .dailySection {
+        padding: 1.5rem 1rem;
+    }
+
+    .detailsSection {
+        padding: 1.5rem 1rem;
+    }
+
+    .detailsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem 1rem;
+    }
+
+    .dayLeft {
+        flex: 0 0 60px;
+    }
+
+    .tempBar {
+        width: 50px;
+    }
+
+    .divider {
+        margin: 0 1rem;
+    }
+
+    .backButton {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.625rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
